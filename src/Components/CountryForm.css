@@ -1,0 +1,14 @@
+.drop-down {
+    padding: 5px 15px 5px 5px;
+    width: 15%;
+    margin-right: 50px;
+}
+
+.search-btn {
+    background-color: #F86E1D;
+    border: 0px;
+    padding: 5px 15px;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+}

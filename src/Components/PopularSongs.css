@@ -1,0 +1,35 @@
+.container {
+    margin: 50px 70px;
+    padding: 10px;
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.songTab {
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.songTab img {
+    border-radius: 10px;
+}
+
+.songTab h4 {
+    width: 174px;
+    margin: 0px;
+    text-align: center;
+    margin: 10px 0px;
+}
+.songTab span {
+    margin: 10px 0px;
+}
