@@ -14,9 +14,14 @@ class App extends Component {
   setObject = (object) => {
     this.object = object;
   }
-
+  show = (song) => {
+    this.object = song;
+    console.log(this.object);
+    this.setState({modal: true});
+  }
   state = {
-    tracks: []
+    tracks: [],
+    modal: false
   }
 
   getMusic = async (e) => {
@@ -32,19 +37,23 @@ class App extends Component {
     const API_Call = await fetch(`https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&api_key=${API_Key}&format=json`);
     
     const data = await API_Call.json();
-    this.setState({ tracks: data.tracks.track });  
     console.log(this.state.tracks);
+    this.setState({ tracks: data.tracks.track });  
+    
   }
   render(){
   return (
     <div className="App">
-      {/* <SongModal object={this.object}/> */}
+      {
+        (this.state.modal === true) ? <SongModal object={this.object}/> : null
+      }
+      
       <header className="App-header">
       <h1 className = "App-title">TOP TRACKS IN INDIA</h1>
      </header>
-     <CountryForm getMusic={this.getMusic} setObject={this.setObject}/>
+     <CountryForm getMusic={this.getMusic}/>
       
-     <PopularSongs tracks={this.state.tracks}/>
+     <PopularSongs tracks={this.state.tracks} setObject={this.setObject} show={this.show}/>
     </div>
   );
   }
@@ -58,7 +67,7 @@ class App extends Component {
     const data = await API_Call.json();
     this.object = data;
     this.setState({ tracks: data.tracks.track });  
-    console.log(this.state.tracks);
+    // console.log(this.state.tracks);
   }
 }
 
