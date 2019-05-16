@@ -9,11 +9,12 @@ class App extends Component {
   constructor() {
     super();
     this.object = null;
+    this.country = 'india';
   }
 
   setObject = (object) => {
     this.object = object;
-  }
+  } 
   show = (song) => {
     this.object = song;
     console.log(this.object);
@@ -28,16 +29,16 @@ class App extends Component {
   }
 
   getMusic = async (e) => {
-    var country;
+   
     if(this.firstRun === true) {
-      country = 'india';
+      this.country = 'india';
     } else {
-      country = e.target.elements.selectCountry.value;
+      this.country = e.target.elements.selectCountry.value;
     }
     e.preventDefault();
-    console.log(country);
+    // console.log(country);
     
-    const API_Call = await fetch(`https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&api_key=${API_Key}&format=json`);
+    const API_Call = await fetch(`https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${this.country}&api_key=${API_Key}&format=json`);
     
     const data = await API_Call.json();
     console.log(this.state.tracks);
@@ -52,7 +53,7 @@ class App extends Component {
       }
       
       <header className="App-header">
-      <h1 className = "App-title">TOP TRACKS IN INDIA</h1>
+      <h1 className = "App-title">TOP TRACKS IN {this.country.toUpperCase()}</h1>
      </header>
      <CountryForm getMusic={this.getMusic}/>
       
