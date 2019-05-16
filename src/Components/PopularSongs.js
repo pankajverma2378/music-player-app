@@ -6,12 +6,22 @@ class PopularSongs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      songs : this.props.tracks
+      songs : this.props.tracks,
+      refresh: false
     }
   }
 
   render() {
-    
+    if(this.props.tracks.length === 0 && this.state.refresh === false)
+    {
+      return(
+        <div className="container-loading">
+            <h1 className="loading-sign">Loading...</h1>
+        </div>
+      );
+    }
+    else
+    {
     return (
       <div className="container">
         <div className="row">
@@ -29,8 +39,14 @@ class PopularSongs extends Component {
         </div>
       </div>
     );
+    }
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({refresh: true});
+    }, 10000);
+  }
   hello = (e) => {
     // this.props.show("hello");
     // console.log(e.target);
@@ -39,6 +55,7 @@ class PopularSongs extends Component {
       return e.target.id === d.mbid;
     }));
   }
+
 };
 
 export default PopularSongs;

@@ -19,6 +19,9 @@ class App extends Component {
     console.log(this.object);
     this.setState({modal: true});
   }
+  hide = () => {
+    this.setState({modal: false});
+  }
   state = {
     tracks: [],
     modal: false
@@ -45,7 +48,7 @@ class App extends Component {
   return (
     <div className="App">
       {
-        (this.state.modal === true) ? <SongModal object={this.object}/> : null
+        (this.state.modal === true) ? <SongModal hide={this.hide} object={this.object}/> : null
       }
       
       <header className="App-header">
@@ -66,7 +69,7 @@ class App extends Component {
     
     const data = await API_Call.json();
     this.object = data;
-    this.setState({ tracks: data.tracks.track });  
+    this.setState({ tracks: data.tracks.track, modal: false});  
     // console.log(this.state.tracks);
   }
 }
